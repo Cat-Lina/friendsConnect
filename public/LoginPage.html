@@ -91,7 +91,7 @@ body {
 <div class="jumbotron">
 
 
-        <form id="signinform" action="http://127.0.0.1:3000">
+        <form id="signinform" action="">
 		<div class="facelogo">
 			<img src="facelogo.png" alt="facelogo">
 		</div>
@@ -117,12 +117,12 @@ body {
 	 function formhandler (){
          var username = $("#username").val();
          var password = $("#password").val();
-	     $.get("http://127.0.0.1:3000/login", "username=" + username + "&password="+password,
+	     $.get("/login", "username=" + username + "&password="+password,
 		   function (data){
                 if (data.success==true){
                    window.localStorage.setItem('token',data.token);
                    setTokenInHeader();
-                    window.location.href = "http://127.0.0.1:3000/app.ejs";
+                    window.location.href = "/app.ejs";
                     $('#signinresult').html(data.message);
                 }else{
                     $('#signinresult').html(data.message);
@@ -139,7 +139,7 @@ body {
             var settings = {
               "async": true,
               "crossDomain": true,
-              "url": "http://127.0.0.1:3000/tokenConfirmation",
+              "url": "/tokenConfirmation",
               "method": "POST",
               "headers": {
                 "Authorization": "Bearer "+token,

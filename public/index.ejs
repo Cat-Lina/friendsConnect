@@ -20,7 +20,7 @@
             </form>
             <input id="button" class="btn" type="button" value="Send a message" onclick="sendMessage()">
             <input id="button" class="btn" type="button" value="Display messages" onclick="displayMessages()">
-            <form class='navbar-form' id="searchbarform" action="http://127.0.0.1:3000">
+            <form class='navbar-form' id="searchbarform" action="">
               <div class='input-group'>
                 <input class='form-control' type='text' id="usernametofind" name='search' placeholder='username to find' />
                 <span class="input-group-btn">
@@ -123,7 +123,7 @@
 
         
         function logOut(){
-            window.location.href ="http://127.0.0.1:3000/LoginPage.html";
+            window.location.href ="/LoginPage.html";
         };
         
         function setTokenInHeader(){
@@ -131,7 +131,7 @@
                 var settings = {
                   "async": true,
                   "crossDomain": true,
-                  "url": "http://127.0.0.1:3000/tokenConfirmation",
+                  "url": "/tokenConfirmation",
                   "method": "POST",
                   "headers": {
                     "Authorization": "Bearer "+token,
@@ -141,7 +141,7 @@
                 $.ajax(settings).done(function (response) {
                       //  alert(response.message);
                         if (response.message=='jwt expired'){
-                            window.location.href ="http://127.0.0.1:3000/LoginPage.html";
+                            window.location.href ="/LoginPage.html";
                         }else{
                             
                             username=response.authData.username;
@@ -159,14 +159,14 @@
                 }).fail(function (jqXHR, textStatus, errorThrown) {
                         if(errorThrown){
                             alert(errorThrown);
-                            window.location.href ="http://127.0.0.1:3000/LoginPage.html";
+                            window.location.href ="/LoginPage.html";
                         }
                 });     
         }; 
         
         
         function displayMessages(){
-            $.get("http://127.0.0.1:3000/displayMessage", "username=" + username, function(data){
+            $.get("/displayMessage", "username=" + username, function(data){
                 var fixture;
                 allMessages=data.array;
                 people=[];
@@ -198,10 +198,10 @@
         
        function searchUser(){
             var usernametofind=$("#usernametofind").val();
-            $.get("http://127.0.0.1:3000/searchUser", "usernametofind=" + usernametofind, function(data){
+            $.get("/searchUser", "usernametofind=" + usernametofind, function(data){
                 if(data.success){
                     var div = document.getElementById('userinfo');
-                    var htmltext='Found user <a href="http://127.0.0.1:3000/userPage?username='+data.username+'">'+data.firstname+" "+data.lastname+'</a>';
+                    var htmltext='Found user <a href="/userPage?username='+data.username+'">'+data.firstname+" "+data.lastname+'</a>';
                     div.innerHTML=htmltext;
                 }else{
                     $('#userinfo').html("No user with username " + data.username + " was found");
@@ -305,7 +305,7 @@
         };
         
         function formhandler (){
-             $.post("http://127.0.0.1:3000/sendMessage",
+             $.post("/sendMessage",
                     {
                     friendusername: $("#friendusername").val(),
                     message: $("#textarea").val(),
