@@ -1,0 +1,44 @@
+{
+  "doctorwhocomposer": {
+    "forename": "Delia",
+    "surname": "Derbyshire",
+    "email": "delia@gmail.com",
+    "password": "delia"
+  },
+  "catalina123": {
+    "forename": "catalina",
+    "surname": "tataru",
+    "email": "tataru@gmail.com",
+    "password": "catalina123"
+  },
+  "lala": {
+    "forename": "Larisa",
+    "surname": "Tataru",
+    "email": "lalatataru@gmail.com",
+    "password": "tata"
+  },
+  "nick": {
+    "forename": "Nick",
+    "surname": "Tataru",
+    "email": "nick@gmail.com",
+    "password": "nick"
+  },
+  "teo": {
+    "forename": "teo",
+    "surname": "tata",
+    "email": "teo@gmail.com",
+    "password": "teo"
+  },
+  "smth": {
+    "forename": "smth",
+    "surname": "smth",
+    "email": "smth@gmail.com",
+    "password": "smth"
+  },
+  "hey": {
+    "forename": "hello",
+    "surname": "hey",
+    "email": "hey@gmail.com",
+    "password": "hey"
+  }
+}

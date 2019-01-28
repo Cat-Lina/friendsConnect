@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="viewport" content="width = device-width, initial-scale = 1">
+<title>FriendsConnect</title>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script type="text/javascript"
+    src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+</script>
+<style>
+.jumbotron{
+    background: #ececec
+    color:white;
+    width: 30%;
+    align-self: center;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+.tab-content {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+}
+.nav-tabs {
+    margin-bottom: 0;
+}
+
+.btn{
+    background: #99ffcc;
+    }
+.facelogo {
+		position: absolute;
+		margin: 0 auto;
+		left: 0;
+		right: 0;
+		top: -50px;
+		width: 95px;
+		height: 95px;
+		border-radius: 50%;
+		z-index: 9;
+		background: #99ffcc;
+		padding: 15px;
+		box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+}    
+.facelogo img {
+		width: 100%;
+}	
+.page-header img{
+    height: 100px;
+    width: 200px;
+    float: left;
+}
+.page-header h1{
+    position: relative;
+    top: 18px;
+    left: 10px;
+    text-align: center;
+    text-decoration: none;
+}
+.page-header{
+    
+    border-bottom: none;
+}
+.signinresult{
+    font-weight: bold;
+    color:red;
+}
+body {
+    background-image: url("background.jpg");
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+<div class="page-header">
+<img src="FClogo.png" alt="logo" />
+<h1>Login Page</h1>
+</div>
+
+<div class="jumbotron">
+
+
+        <form id="signinform" action="http://127.0.0.1:3000">
+		<div class="facelogo">
+			<img src="facelogo.png" alt="facelogo">
+		</div>
+        <h2 class="text-center">User Login</h2>   
+        <div class="form-group">
+        	<input type="text" class="form-control" placeholder="Username" required="required" id="username">
+        </div>
+		<div class="form-group">
+            <input type="password" class="form-control" placeholder="Password" required="required" id="password">
+        </div>        
+        <div class="form-group">
+            <input type="button" value="Submit" class="btn btn-primary btn-lg btn-block" onclick="formhandler()">
+
+        </div>
+		<div class="clearfix">
+            <a href="mySignUpPage.html" class="pull-left">Sign Up</a>
+            <a href="#" class="pull-right">Forgot Password?</a>
+        </div>
+    </form>
+	<div id='signinresult' class='signinresult'></div>
+	<script>
+        
+	 function formhandler (){
+         var username = $("#username").val();
+         var password = $("#password").val();
+	     $.get("http://127.0.0.1:3000/login", "username=" + username + "&password="+password,
+		   function (data){
+                if (data.success==true){
+                   window.localStorage.setItem('token',data.token);
+                   setTokenInHeader();
+                    window.location.href = "http://127.0.0.1:3000/app.ejs";
+                    $('#signinresult').html(data.message);
+                }else{
+                    $('#signinresult').html(data.message);
+                };
+		       
+		   });
+
+	     return false;
+		   
+	 };
+        function setTokenInHeader(){
+         token=window.localStorage.getItem('token');
+            alert(token);
+            var settings = {
+              "async": true,
+              "crossDomain": true,
+              "url": "http://127.0.0.1:3000/tokenConfirmation",
+              "method": "POST",
+              "headers": {
+                "Authorization": "Bearer "+token,
+                "cache-control": "no-cache"
+              }
+            }
+
+            $.ajax(settings).done(function (response) {
+                    $('#signinresult').html(response.message);
+            });
+
+        };
+	</script>
+</div>
+</div>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+.jumbotron{
+    background: #ececec;
+    color:white;
+    width: 110%;
+    margin-top: 2%;
+    min-height: 40vw;
+}
+
+#jumbo {
+  padding-right:0px;
+}
+
+#button{
+    font-size: 0.7rem;
+    height: 3vw;
+}
+
+.tab-content {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+}
+.nav-tabs {
+    margin-bottom: 0;
+}
+
+.btn{
+    background: #99ffcc;
+    }
+	
+.header img{
+    width: 15%;
+    float: left;
+    position: absolute;
+}
+
+.firstline .avatar{
+    border-radius: 50%;   
+    width: 17vw;
+    height: 17vw;
+    margin-left: 2%;
+    position: relative;
+    transition: .5s ease;
+    backface-visibility: hidden;
+}
+.firstline{
+    width: 30%;
+}
+
+.firstline:hover .avatar{
+    opacity: 0.3;
+}
+
+.firstline:hover .middle {
+  opacity: 1;
+}
+
+.file-field{
+    width:50%;
+    text-align: left;
+}
+
+#button2{
+    font-size: 0.6rem;
+    margin-left: -12vw;
+}
+
+.middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    text-align: center;
+    margin-top: -12%;
+    margin-left: 4%;
+}
+
+.text{
+   display: inline-block;  
+    font-size: 1.5vw;
+    color: black;
+    text-align: center;
+    width:50%;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 22% 22% 22% 22%;
+  grid-gap: 10px;
+  color: #444;
+}
+
+.box {
+    background-color: white;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    color: white;
+    border-radius: 10px;
+    padding: 43%;
+    font-size: 150%;
+}
+
+.box:hover{
+    opacity: 0.3;
+}
+
+.picform{
+    color: black;
+    display: flex;
+    align-items: center;
+    float: right;
+    padding-right: 9.2vw;
+}
+
+.formclass img{
+    width: 20%;
+    float: left;
+}
+
+.connect{
+    display: inline-flex;
+}
+.messageid{
+    width:50%;
+    font-size: 2vw;
+}
+#fileuploadfield{
+    width:100%;
+}

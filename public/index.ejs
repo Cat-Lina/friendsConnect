@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width = device-width, initial-scale = 1">
+<link href="bootstrap.min.css" rel="stylesheet">
+<link href="css/main.css" rel="stylesheet">
+<link rel = "stylesheet" type = "text/css" href = "myStyle.css" />
+<link rel="stylesheet" href="index-style.css">
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<title>FriendsConnect</title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+</head>
+<body background="background.jpg">
+<div id="content" class="picform">
+            <form action="/" method="GET" class="formclass">
+                <button id="button" type="submit" class="btn">Main Page</button>
+            </form>
+            <input id="button" class="btn" type="button" value="Send a message" onclick="sendMessage()">
+            <input id="button" class="btn" type="button" value="Display messages" onclick="displayMessages()">
+            <form class='navbar-form' id="searchbarform" action="http://127.0.0.1:3000">
+              <div class='input-group'>
+                <input class='form-control' type='text' id="usernametofind" name='search' placeholder='username to find' />
+                <span class="input-group-btn">
+                  <button type='submit' id="searchbutton" class='btn btn-default' onclick="searchUser()">
+                    <span class='glyphicon glyphicon-search'></span>
+                  </button>
+                </span>
+              </div>
+            <p id="userinfo"></p>
+            </form>
+            <input id="button" class="btn" type="button" value="Log Out" onclick="logOut()">
+    </div>
+<div class="container">
+    <div class="header">
+        <img src="FClogo.png" alt="logo" />
+    </div>
+    
+<div class="jumbotron" id="jumbo">
+    <br><br><br><br>
+    <div class="connect">
+        
+    <div class="firstline">
+                <form role='form' action="/uploadAvatar" method="POST" enctype="multipart/form-data" >
+                    
+                    <img alt="Avatar" class="avatar" id="avatarpic" src="img_avatar.png">
+                    <div class="middle">
+                    <input id="username3" name="username" type="hidden">
+                    <div class="file-field input-field">
+                    <div class="btn grey">
+                      <span>File</span>
+                      <input class="btn" name="myAvatar" type="file">
+                    </div>
+                    <div class="file-path-wrapper">
+                      <input class="file-path validate" type="text">
+                    </div>
+                  </div>
+                  <input class="btn" type="submit" value="Upload avatar" id="button2" >
+                    </div> 
+                </form>
+     </div>
+     <div class="text">
+            <b id='usernameinfo'></b><br>
+            <b>Email: </b>
+            <b id='emailfield'></b><br>
+            <b>First name: </b>
+            <b id='firstnamefield'></b><br>
+            <b>Last name: </b>
+            <b id='lastnamefield'></b><br>
+         
+    </div>   
+    <div id="fileupload" class="fileupload">
+    <h4>Picture Upload</h4>
+    <%= typeof msg != 'undefined' ? msg : '' %>
+    <form role='form' action="/upload" method="POST" enctype="multipart/form-data" >
+        <input id="username2" name="username" type="hidden" id='button'>
+        <div class="file-field input-field" id="fileuploadfield">
+        <div class="btn grey">
+          <span>File</span>
+          <input name="myImage" type="file">
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text">
+        </div>
+      </div>
+      <input class="btn" type="submit" value="Upload" id='button'>
+    </form>
+    <br>
+      <img src="<%= typeof file != 'undefined' ? file : '' %>" class="responsive-img">
+    </div>
+   
+    </div>    
+    
+     <form action="/getPictureNames" method="GET" class="formclass" id="frm1">
+                <input id="username" name="username" type="hidden">
+                <button type="submit" id="button" class="btn">View my pictures</button>
+                <br><br>
+                <div class="wrapper">
+                <% if ((typeof filelist) != 'undefined') { %>
+                
+                <% for(var i=filelist.length-1; i >=0 ; i--) { %>
+                    <div class="box" id="picboxid" style="background-image: url('<%=username+"/"+filelist[i]%>');">
+                    </div>
+                <% } %>
+                <% } %>
+                </div>
+    </form>   
+    
+    <div id="messageResult"></div>
+    <div id="displayMessageResult"></div>
+        
+</div>      
+</div>
+    <script>
+        
+        setTokenInHeader();
+        username;
+        obj = {};
+        myMessages={};
+        allMessages={};
+
+        
+        function logOut(){
+            window.location.href ="http://127.0.0.1:3000/LoginPage.html";
+        };
+        
+        function setTokenInHeader(){
+                token=window.localStorage.getItem('token');
+                var settings = {
+                  "async": true,
+                  "crossDomain": true,
+                  "url": "http://127.0.0.1:3000/tokenConfirmation",
+                  "method": "POST",
+                  "headers": {
+                    "Authorization": "Bearer "+token,
+                    "cache-control": "no-cache"
+                  },
+                }
+                $.ajax(settings).done(function (response) {
+                      //  alert(response.message);
+                        if (response.message=='jwt expired'){
+                            window.location.href ="http://127.0.0.1:3000/LoginPage.html";
+                        }else{
+                            
+                            username=response.authData.username;
+                            $('#usernameinfo').html(username);
+                            document.getElementById("username").value=username;
+                            document.getElementById("username2").value=username;
+                            document.getElementById("username3").value=username;
+                            document.getElementById("avatarpic").src= username+'/avatar.png';
+                            $('#emailfield').html(response.authData.email);
+                            $('#firstnamefield').html(response.authData.forename);
+                            $('#lastnamefield').html(response.authData.surname);
+                        }
+                    $('#emailfield').html(response.authData.email);
+
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                        if(errorThrown){
+                            alert(errorThrown);
+                            window.location.href ="http://127.0.0.1:3000/LoginPage.html";
+                        }
+                });     
+        }; 
+        
+        
+        function displayMessages(){
+            $.get("http://127.0.0.1:3000/displayMessage", "username=" + username, function(data){
+                var fixture;
+                allMessages=data.array;
+                people=[];
+                
+                for (var i in allMessages) {
+                    fixture = allMessages[i];
+                    var sname=JSON.parse(fixture).senderUsername;
+                    var rname=JSON.parse(fixture).receiverUsername;
+                    var person="";
+                    if (sname==username){
+                        person = rname;
+                    }else{
+                        person = sname;
+                    };
+                    if (!(people.includes(person)) ){
+                        people.push(person);
+                    };
+                };           
+                handleData(people);
+            });
+    
+        };
+    
+        //prevent reloading the page when user searches a username up
+        document.getElementById("searchbutton").addEventListener("click", function(event){
+                event.preventDefault();
+                handleFireButton();
+            });
+        
+       function searchUser(){
+            var usernametofind=$("#usernametofind").val();
+            $.get("http://127.0.0.1:3000/searchUser", "usernametofind=" + usernametofind, function(data){
+                if(data.success){
+                    var div = document.getElementById('userinfo');
+                    var htmltext='Found user <a href="http://127.0.0.1:3000/userPage?username='+data.username+'">'+data.firstname+" "+data.lastname+'</a>';
+                    div.innerHTML=htmltext;
+                }else{
+                    $('#userinfo').html("No user with username " + data.username + " was found");
+                };
+                
+            }); 
+        };
+      
+        function viewMessageFrom(key){
+            var s = document.getElementById('current-name');
+            s.innerHTML = key;
+            var div = document.getElementById('messagebox');
+            var htmltext='';
+            
+            for (var i in allMessages) {
+                fixture = allMessages[i];
+                var sname=JSON.parse(fixture).senderUsername;
+                var rname=JSON.parse(fixture).receiverUsername;
+                var message=JSON.parse(fixture).message;
+                if(key==sname){
+                    htmltext+= '<p class="speech-bubble1">'+ message + '</p><br><br>';
+                }else if(key==rname){
+                    htmltext+= '<p class="speech-bubble2">'+ message + '</p><br><br>';
+                }else{
+                    
+                };
+            };
+            htmltext+=
+                    '<form>'+
+                    '<div class="message-input-box-container">'+
+                        '<div class="input-box">'+
+                            '<span class="placeholder">'+
+                                '<input type="hidden" id="friendusername" value="'+key+'"></input>'+
+                                '<input style="background-color:white;" class="message-box" id="textarea" type="text" placeholder="Type here">'+
+                            '</span>'+
+                        '</div>'+
+                    '<button type="submit" class="send" onclick="formhandler()">Send</button>'+
+                    '</form>'+
+                    '</div>';
+            
+            
+            div.innerHTML=htmltext;
+            
+                     
+        };
+        
+        function handleData(array){
+            var div = document.createElement('div');
+            div.className = 'page-wrapper';
+            output =
+            '<div class="left-container">'+
+                '<div class="header-container">'+
+                '<span class="title">'+ 'My messages' +'</span>'+
+                '</div>'+
+                
+                '<div class="contacts-container">';
+            
+            for (var i = 0; i < array.length; i++){
+                output+=
+                    '<div class="contact" onclick="viewMessageFrom(\''+array[i]+'\')">'+
+                    '<ion-icon name="contact" id="icon"></ion-icon>'+
+                        '<div class="details">'+
+                        '<span class="contact-name" id="'+array[i]+'">'+array[i]+'</span>'+
+                        '<br>'+
+                        '<span class="last-message">'+
+                        'This was my last message..</span>'+
+                        '</div>'+
+                    '</div>';
+            };
+            
+            
+            output+=
+                '</div>'+
+            '</div>'+
+            '<div class="right-container">'+
+                '<div class="chat-header-container">'+
+                    '<ion-icon name="contact"></ion-icon>'+
+                    '<span class="current-name" id="current-name"></span>'+
+                '</div>'+
+                '<div id="messagebox" class="chat-container">'+
+                    
+                '</div>'+
+            '</div>';
+            
+            div.innerHTML = output;
+            document.getElementById('displayMessageResult').appendChild(div);
+            
+        };
+        
+        
+        function sendMessage() {
+            var div = document.createElement('div');
+            div.className = 'smth';
+            div.innerHTML =
+                '<form class="messageid">Friends username: <input type="text" id="friendusername" required><br/>Text box: <textarea id="textarea" name="message" rows="10" cols="30" required></textarea><br></form><input type="button" class="btn" value="Send message" onclick="formhandler()&removeRow(this)"><input class="btn" type="button" value="- Hide" onclick="removeRow(this)">';
+            document.getElementById('displayMessageResult').appendChild(div);
+        };
+        
+        function removeRow(input) {
+            document.getElementById('displayMessageResult').removeChild(input.parentNode);
+        };
+        
+        function formhandler (){
+             $.post("http://127.0.0.1:3000/sendMessage",
+                    {
+                    friendusername: $("#friendusername").val(),
+                    message: $("#textarea").val(),
+                    senderusername: username
+                  },
+             function (data){
+             $('#messageResult').html(data);
+             });
+             return false;   
+	     };
+        
+
+    </script>
+    
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script
+src="https://code.jquery.com/jquery-3.2.1.min.js"
+integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script> 
+<!-- Ionicons dependencies -->
+<script src="https://unpkg.com/ionicons@4.5.1/dist/ionicons.js"></script>
+
+</body>
+</html>
+
+

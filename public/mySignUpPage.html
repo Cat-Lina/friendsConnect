@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="viewport" content="width = device-width, initial-scale = 1">
+<title>FriendsConnect</title>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<style>
+.jumbotron{
+    background: #ececec
+    color:white;
+    width: 30%;
+    align-self: center;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+.tab-content {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+}
+.nav-tabs {
+    margin-bottom: 0;
+}
+
+.btn{
+    background: #99ffcc;
+    }
+.facelogo {
+		position: absolute;
+		margin: 0 auto;
+		left: 0;
+		right: 0;
+		top: -50px;
+		width: 95px;
+		height: 95px;
+		border-radius: 50%;
+		z-index: 9;
+		background: #99ffcc;
+		padding: 15px;
+		box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+}    
+.facelogo img {
+		width: 100%;
+}	
+.page-header img{
+    height: 100px;
+    width: 200px;
+    float: left;
+}
+.page-header{
+    
+    border-bottom: none;
+}
+
+body {
+    background-image: url("background.jpg");
+}
+</style>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+<div class="page-header">
+<img src="FClogo.png" alt="logo" />
+</div>
+
+<div class="jumbotron">
+
+    <form id="signupform" action="http://127.0.0.1:3000">
+		<div class="facelogo">
+			<img src="facelogo.png" alt="facelogo">
+		</div>
+        <h2 class="text-center">User Registration</h2>
+        <div class="form-group">
+        	<input type="text" class="form-control" name="firstname" id="firstname" placeholder="First Name" required="required">
+        </div>
+        <div class="form-group">
+        	<input type="text" class="form-control" name="lastname"  id="lastname" placeholder="Last Name" required="required">
+        </div>
+        <div class="form-group">
+        	<input type="email" class="form-control" name="email"  id="email" placeholder="Email address" required="required">
+        </div>
+        <div class="form-group">
+        	<input type="text" class="form-control" name="username"  id="username" placeholder="Username" required="required">
+        </div>
+		<div class="form-group">
+            <input type="password" class="form-control" name="password"  id="password" placeholder="Password" required="required">
+        </div>        
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Sign up</button>
+        </div>
+        <div class="clearfix">
+            <a href="LoginPage.html" class="pull-left">Go back</a>
+        </div>
+    </form>
+    <div id='signupresult'></div>
+</div>
+</div>
+
+	<script>
+	 function formhandler (){
+         $.post("http://127.0.0.1:3000/signup",
+                {
+                firstname: $("#firstname").val(),
+                lastname: $("#lastname").val(),
+                email: $("#email").val(),
+                username:$("#username").val(),
+                password:$("#password").val()
+		      },
+	     function (data){
+		 $('#signupresult').html(data);
+	     });
+	     return false;   
+	 };
+        $('#signupform').on('submit', formhandler);
+
+	</script>
+    
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+
+.page-wrapper{
+	overflow: hidden;
+    height: 45vw;
+}
+
+.right-container{
+	/*outline: 1px solid black;*/
+	background-color: #eee;
+	max-height: 100vh;
+	height: 100vh;
+	max-width: 40vw;
+	width: 40vw;
+	margin-left: 15vw;
+}
+
+.right-container .chat-container{
+	width: 100%;
+	max-width: 100%;
+	height: 50%;
+	max-height: 50%;
+	background-color: floralwhite;
+    padding-top: 0.5%;
+    position: relative;
+    overflow-y: scroll;
+}
+
+.right-container .chat-container .message-input-box-container{
+	/*outline: 1px solid black;*/
+	background-color: floralwhite;
+    width: 38vw;
+	max-width: 40vw;
+	height: 8vh;
+	max-height: 8vh;
+	position: absolute;
+    bottom: 0;
+}
+
+.right-container .chat-container .message-input-box-container .input-box{
+	width: 90%;
+	max-width: 90%;
+	height: 100%;
+	max-height: 100%;
+	float: left;
+    background-color: #85e085;
+}
+
+.right-container .chat-container .message-input-box-container .input-box .placeholder{
+	line-height: 8vh;
+	color: #005A5B;
+	padding-left: 1vw;
+}
+
+.right-container .chat-container .message-input-box-container .send{
+	background-color: #003840;
+	display: box;
+	line-height: 8vh;
+	text-align: center;
+	font-size: 1.2em;
+	color: white;
+	float: left;
+	width: 10%;
+	height: 100%;
+}
+
+.left-container{
+	/*outline: 1px solid black; */
+	max-height: 100vh; 
+	height: 100vh;
+	max-width: 15vw;
+	width: 15vw;
+	float: left;
+}
+
+.left-container .contacts-container{
+	/*outline: 1px solid black;*/
+	background-color: #b3ffb3;
+	width: 100%;
+	max-width: 100%;
+	height: 50%;
+	max-height: 50%;
+    overflow-y: scroll;
+}
+
+.left-container .contacts-container .contact{
+	/*outline: 1px solid black;*/
+	padding-top: 1vh;
+}
+
+.left-container .contacts-container .contact ion-icon{
+	width: 10vh;
+	max-width: 10vh;
+	height: 10vh;
+	max-height: 10vh;
+	float: left;
+}
+
+
+.left-container .contacts-container .contact .details{
+	/*outline: 1px solid black;*/
+	width: 80%;
+	max-width: 80%;
+	height: 10vh;
+	max-height: 10vh;
+	float: left;
+}
+
+.left-container .contacts-container .contact .details .contact-name{
+	/*outline: 1px solid black;*/
+	font-size: 1.3em;
+	padding-left: 1vw;
+}
+
+.left-container .contacts-container .contact .details .last-message{
+	padding-left: 1vw;	
+}
+
+.header-container{
+	height: 10vh; 
+	max-height: 10vh;
+	/*outline: 1px solid black;	*/
+	background-color: #85e085;
+}
+
+.title{
+	font-size: 1.5em;
+	line-height: 10vh;
+	padding-left: 1vw;
+	color: black;
+}
+
+.chat-header-container{
+	/*outline: 1px solid black;*/
+	background-color: #b3ffb3;
+	height: 10vh;
+}
+
+.chat-header-container ion-icon{
+	/*outline: 1px solid black;*/
+	width: 10vh;
+	height: 10vh;
+	padding-left: 2vw;
+}
+
+.chat-header-container .current-name{
+	font-size: 1.5em;
+	line-height: 10vh;
+	position: absolute;
+	padding-left: 1vw;
+	color: #003840;
+}
+.speech-bubble1 {
+	position: absolute;
+    left:0;
+    background: #ebebeb none repeat scroll 0 0;
+    border-radius: 3px;
+    color: #646464;
+    font-size: 14px;
+    margin: 0;
+    padding: 3px 10px 5px 12px;
+    
+}
+.speech-bubble2 {
+	position: absolute;
+    right:0;
+    background: #05728f none repeat scroll 0 0;
+    border-radius: 3px;
+    font-size: 14px;
+    margin: 0;
+    color: #fff;
+    padding: 3px 10px 5px 12px;
+}
+
+
+#icon{
+    width: 50%;
+}

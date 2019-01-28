@@ -1,0 +1,106 @@
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link rel = "stylesheet" type = "text/css" href = "myStyle.css" />
+    <link rel="stylesheet" href="index-style.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <title>FriendsConnect</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    </head>
+    <body background="background.jpg">
+<div class="container">
+    <div class="header">
+        <img src="FClogo.png" alt="logo" />
+    </div>
+<div class="jumbotron" id="jumbo">
+
+        <div class="firstline">
+            <img src="img_avatar.png" alt="Avatar" class="avatar">
+            <div class="text">
+                <div id='usernameinfo'></div><br>
+                
+                 <b></b>
+            </div>            
+        
+        </div>
+    
+      <form action="/" method="GET" class="formclass">
+        <br>
+        <button type="submit" class="btn">Return to Main Page</button>
+    </form>  
+        <br>
+        <form action="http://127.0.0.1:3000/userPage" class="formclass">
+        <div id="usernameid"></div>
+        <div class="wrapper" id="wrapperclass"></div>
+        <button id="searchbutton" type="submit" class="btn" onclick="getPics()">View user's pictures</button>
+        </form> 
+
+</div>      
+</div>
+        
+        
+        
+        
+        <script>
+            document.getElementById("searchbutton").addEventListener("click", function(event){
+                event.preventDefault();
+                handleFireButton();
+            });
+            username=getUsername();
+            function getUsername(){
+                var url_string = window.location.href;
+                var url = new URL(url_string);
+                username = url.searchParams.get("username");
+                var div = document.getElementById('usernameid');
+                var htmltext='<input id="username" name="username" value="'+username+'" type="hidden">';
+                div.innerHTML=htmltext;  
+                var div2 = document.getElementById("usernameinfo");
+                htmltext='<b>Username:<br>'+username+'</b>';
+                div2.innerHTML=htmltext;
+                return username;
+            }
+            
+            function getPics(){
+                
+                $.get("/userPage/getPictureNamesUser","username="+getUsername(),function(data){
+                    if(data.filelist!=undefined){
+                        var arrlength=data.filelist.length;
+                        var div = document.getElementById('wrapperclass');
+                        var htmltext="";
+                        for (var i = 0; i < arrlength; i++){
+                            htmltext+='<div class="box" id="pic'+i+'"></div>';
+                        };
+                        
+                        div.innerHTML=htmltext;
+                        
+                        for (var i = 0; i < arrlength; i++){
+                            var uri = data.username+'\/'+data.filelist[i];
+                            var id='pic'+i;
+                            document.getElementById(id).style.backgroundImage="url('"+uri+"')";
+                        };
+                        
+                    };                                                                        
+                });
+                
+            };
+            
+        </script>
+        
+        
+        
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script> 
+        <!-- Ionicons dependencies -->
+        <script src="https://unpkg.com/ionicons@4.5.1/dist/ionicons.js"></script>
+    </body>
+</html>

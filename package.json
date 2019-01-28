@@ -1,0 +1,23 @@
+{
+  "name": "finalversion",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest",
+    "dev": "node index.js"
+  },
+  "author": "cat",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "fs": "0.0.1-security",
+    "jest": "^24.0.0",
+    "jsonwebtoken": "^8.4.0",
+    "multer": "^1.4.1",
+    "path": "^0.12.7"
+  }
+}
