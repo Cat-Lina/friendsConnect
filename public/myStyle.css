@@ -10,9 +10,12 @@
   padding-right:0px;
 }
 
-#button{
-    font-size: 0.7rem;
-    height: 3vw;
+.file-path-wrapper{
+    width:10vw;
+}
+
+.input-group{
+    width:20vw;
 }
 
 .tab-content {
@@ -24,13 +27,9 @@
 .nav-tabs {
     margin-bottom: 0;
 }
-
-.btn{
-    background: #99ffcc;
-    }
 	
 .header img{
-    width: 15%;
+    width: 13%;
     float: left;
     position: absolute;
 }
@@ -45,7 +44,7 @@
     backface-visibility: hidden;
 }
 .firstline{
-    width: 30%;
+    width: 50%;
 }
 
 .firstline:hover .avatar{
@@ -63,7 +62,22 @@
 
 #button2{
     font-size: 0.6rem;
-    margin-left: -12vw;
+    padding: 0.2vw 0.5vw 0.2vw 0.5vw;
+    height: 3vw;
+}
+
+#button{
+    font-size: 1.2vw;
+    padding: 0.2vw 0.5vw 0.2vw 0.5vw;
+    line-height: 0;
+    height: 3vw;
+}
+
+#searchbutton{
+    font-size: 1.2vw;
+    padding: 0.2vw 0.5vw 0.2vw 0.5vw;
+    line-height: 0;
+    height: 3vw;
 }
 
 .middle {
@@ -71,8 +85,8 @@
     opacity: 0;
     position: absolute;
     text-align: center;
-    margin-top: -12%;
-    margin-left: 4%;
+    margin-top: -15%;
+    margin-left: 2%;
 }
 
 .text{
@@ -121,6 +135,7 @@
 
 .connect{
     display: inline-flex;
+    align-items: center;
 }
 .messageid{
     width:50%;
@@ -128,4 +143,15 @@
 }
 #fileuploadfield{
     width:100%;
+}
+
+.picupload{
+    font-size: 2vw;
+    font-weight: bold;
+}
+
+#messageResult{
+    color: darkcyan;
+    font-weight: bold;
+    font-size: 1.5vw;
 }

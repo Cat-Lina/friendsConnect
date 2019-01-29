@@ -58,5 +58,35 @@
     "receiverUsername": "lala",
     "senderUsername": "catalina123",
     "message": "hey lala"
+  },
+  "Tue Jan 29 2019 14:53:04 GMT+0000 (GMT Standard Time)92": {
+    "receiverUsername": "teo",
+    "senderUsername": "catalina123",
+    "message": "yeah, sounds great"
+  },
+  "Tue Jan 29 2019 14:57:44 GMT+0000 (GMT Standard Time)666": {
+    "receiverUsername": "teo",
+    "senderUsername": "catalina123",
+    "message": "what time?"
+  },
+  "Tue Jan 29 2019 14:58:48 GMT+0000 (GMT Standard Time)612": {
+    "receiverUsername": "nick",
+    "senderUsername": "catalina123",
+    "message": "heeeeey"
+  },
+  "Tue Jan 29 2019 15:12:33 GMT+0000 (GMT Standard Time)454": {
+    "receiverUsername": "doctorwhocomposer",
+    "senderUsername": "catalina123",
+    "message": "hello Delia"
+  },
+  "Tue Jan 29 2019 16:39:30 GMT+0000 (GMT Standard Time)834": {
+    "receiverUsername": "catalina123",
+    "senderUsername": "mat",
+    "message": "hey cat, I miss you"
+  },
+  "Tue Jan 29 2019 16:40:34 GMT+0000 (GMT Standard Time)417": {
+    "receiverUsername": "mat",
+    "senderUsername": "catalina123",
+    "message": "okkkkk"
   }
 }

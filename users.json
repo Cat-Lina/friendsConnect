@@ -40,5 +40,11 @@
     "surname": "hey",
     "email": "hey@gmail.com",
     "password": "hey"
+  },
+  "mat": {
+    "forename": "Matthias",
+    "surname": "Schmutzer",
+    "email": "matthias.schmutzer@gmail.com",
+    "password": "mat"
   }
 }

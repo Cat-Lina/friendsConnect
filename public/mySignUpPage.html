@@ -11,9 +11,8 @@
 
 <style>
 .jumbotron{
-    background: #ececec
-    color:white;
-    width: 30%;
+    background: #ececec;
+    color:black;
     align-self: center;
     margin: 0;
     position: absolute;
@@ -22,6 +21,11 @@
     margin-right: -50%;
     transform: translate(-50%, -50%)
 }
+
+.form-group{
+    padding-left: 2vw;
+    padding-right: 2vw;
+}    
 
 .tab-content {
     border-left: 1px solid #ddd;
@@ -78,7 +82,7 @@ body {
 
 <div class="jumbotron">
 
-    <form id="signupform" action="http://127.0.0.1:3000">
+    <form id="signupform" action="">
 		<div class="facelogo">
 			<img src="facelogo.png" alt="facelogo">
 		</div>
@@ -111,7 +115,7 @@ body {
 
 	<script>
 	 function formhandler (){
-         $.post("http://127.0.0.1:3000/signup",
+         $.post("/signup",
                 {
                 firstname: $("#firstname").val(),
                 lastname: $("#lastname").val(),

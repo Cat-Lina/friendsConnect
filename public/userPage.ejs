@@ -19,26 +19,26 @@
     </div>
 <div class="jumbotron" id="jumbo">
 
-        <div class="firstline">
-            <img src="img_avatar.png" alt="Avatar" class="avatar">
-            <div class="text">
+            <div class="firstline">
+            <img id="avatarpic" alt="Avatar" class="avatar">
+                <div class="text">
                 <div id='usernameinfo'></div><br>
-                
-                 <b></b>
-            </div>            
+                </div>    
+            </div>
+                    
         
-        </div>
     
       <form action="/" method="GET" class="formclass">
         <br>
         <button type="submit" class="btn">Return to Main Page</button>
     </form>  
         <br>
-        <form action="http://127.0.0.1:3000/userPage" class="formclass">
+        <form action="/userPage" class="formclass">
         <div id="usernameid"></div>
         <div class="wrapper" id="wrapperclass"></div>
         <button id="searchbutton" type="submit" class="btn" onclick="getPics()">View user's pictures</button>
         </form> 
+        
 
 </div>      
 </div>
@@ -52,6 +52,7 @@
                 handleFireButton();
             });
             username=getUsername();
+            document.getElementById("avatarpic").src= username+'/avatar.png';
             function getUsername(){
                 var url_string = window.location.href;
                 var url = new URL(url_string);
