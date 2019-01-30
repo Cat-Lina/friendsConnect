@@ -221,7 +221,7 @@ app.get('/login', function(req, resp) {
                 surname: users[username].surname
             };
             var token = jwt.sign(payload, app.get('superSecret'), {
-                expiresIn: '150s'
+                expiresIn: '4m'
             });
             resp.json({
                 success: true,
