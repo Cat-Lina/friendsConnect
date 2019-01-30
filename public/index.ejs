@@ -207,7 +207,6 @@
                 //prevent reloading the page when user searches a username up
                 document.getElementById("searchbutton").addEventListener("click", function(event){
                   event.preventDefault();
-                  handleFireButton();
                 });
                   
                 
@@ -269,13 +268,10 @@
                     '<div class="contacts-container">';
                   for (var i = 0; i < array.length; i++){
                     output+=
-                      '<div class="contact" onclick="viewMessageFrom(\''+array[i]+'\')">'+
+                      '<div id="hoverme" class="contact" onclick="viewMessageFrom(\''+array[i]+'\')">'+
                       '<ion-icon name="contact" id="icon"></ion-icon>'+
                       '<div class="details">'+
                       '<span class="contact-name" id="'+array[i]+'">'+array[i]+'</span>'+
-                      '<br>'+
-                      '<span class="last-message">'+
-                      'This was my last message..</span>'+
                       '</div>'+
                       '</div>';
                   };
